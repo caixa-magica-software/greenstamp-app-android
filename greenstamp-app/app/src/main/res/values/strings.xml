@@ -2,4 +2,14 @@
     <string name="app_name">Green Stamp</string>
     <string name="installed_apps">Apps installed on your device</string>
     <string name="installed_app_icon">Installed App Icon</string>
+    <string name="uname">Uname: %s</string>
+    <string name="size">Size: %s</string>
+    <string name="age">Age\n  - Name: %s \n  - Title: %s \n  - Pegi: %s \n  - Rating: %s</string>
+    <string name="developer">Developer\n  - Name: %s \n  - Website: %s \n  - Email: %s \n  - Privacy: %s</string>
+    <string name="store">Store: %s</string>
+    <string name="version">Version: %s</string>
+    <string name="keywords">Keywords: %s</string>
+    <string name="description">Description: %s</string>
+    <string name="rating">Rating: %s</string>
+    <string name="downloads">Downloads: %s</string>
 </resources>
