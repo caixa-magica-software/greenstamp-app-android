@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
             String packageName = packInfo.packageName;
             Drawable appIcon = packInfo.applicationInfo.loadIcon(getPackageManager());
 
-            if(!((packInfo.applicationInfo.flags & (ApplicationInfo.FLAG_UPDATED_SYSTEM_APP | ApplicationInfo.FLAG_SYSTEM)) > 0)) {
+            if(!((packInfo.applicationInfo.flags & (ApplicationInfo.FLAG_UPDATED_SYSTEM_APP |
+                    ApplicationInfo.FLAG_SYSTEM)) > 0)) {
                 InstalledApp installedApp = new InstalledApp(appName, packageName, appIcon);
                 installedApps.add(installedApp);
             }
