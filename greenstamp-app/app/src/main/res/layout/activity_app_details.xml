@@ -6,11 +6,13 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".AppDetailsActivity"
         android:orientation="vertical"
-        android:layout_margin="12dp">
+        android:layout_margin="12dp"
+        android:paddingBottom="20dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -124,8 +126,7 @@
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:textStyle="normal"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginTop="12dp" />
 
     </LinearLayout>
 </ScrollView>
