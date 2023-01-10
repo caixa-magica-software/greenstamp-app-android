@@ -1,7 +1,6 @@
 package com.example.greenstamp;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,6 +32,7 @@ public class AppDetailsActivity extends AppCompatActivity {
     private AptoideAPI aptoideAPI;
     private AptoideAPI aptoideAPI2;
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable compositeDisposable2= new CompositeDisposable();
 
     private final Context context = this;
     private LinearLayout linearLayout;
@@ -115,7 +115,7 @@ public class AppDetailsActivity extends AppCompatActivity {
         textViewSize.setText(context.getResources().getString(R.string.size,
                 String.valueOf(appDetails.size)));
         textViewAge.setText(context.getResources().getString(R.string.age, appDetails.age.name,
-               appDetails.age.title, appDetails.age.pegi, String.valueOf(appDetails.age.rating)));
+                appDetails.age.title, appDetails.age.pegi, String.valueOf(appDetails.age.rating)));
         textViewDeveloper.setText(context.getResources().getString(R.string.developer,
                 appDetails.developer.name, appDetails.developer.website, appDetails.developer.email,
                 appDetails.developer.privacy));
@@ -136,7 +136,7 @@ public class AppDetailsActivity extends AppCompatActivity {
     private void getAppAnalysis() {
         ApiAnalysisBody apiAnalysisBody = new ApiAnalysisBody(appName, packageName, version);
 
-        compositeDisposable.add(aptoideAPI2.getAppAnalysis(apiAnalysisBody)
+        compositeDisposable2.add(aptoideAPI2.getAppAnalysis(apiAnalysisBody)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorResumeNext(throwable -> {
@@ -158,16 +158,17 @@ public class AppDetailsActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(0,12,0,0);
 
-        List<ApiAnalysisResponse.Data.Result> results = apiAnalysisResponse.data.results;
+        if(apiAnalysisResponse.data != null) {
+            List<ApiAnalysisResponse.Data.Result> results = apiAnalysisResponse.data.results;
 
-        for (int i = 0; i < results.size(); i++) {
-            TextView textView = new TextView(this);
-            textView.setLayoutParams(params);
-            textView.setText(context.getResources().getString(R.string.result,
-                    results.get(i).name, results.get(i).parameters, results.get(i).result));
-            textView.setTextColor(Color.BLACK);
-            textView.setTextSize(16);
-            linearLayout.addView(textView);
+            for (int i = 0; i < results.size(); i++) {
+                TextView textView = new TextView(this);
+                textView.setLayoutParams(params);
+                textView.setText(context.getResources().getString(R.string.result,
+                        results.get(i).name, results.get(i).parameters, results.get(i).result));
+                textView.setTextSize(16);
+                linearLayout.addView(textView);
+            }
         }
     }
 
@@ -185,14 +186,12 @@ public class AppDetailsActivity extends AppCompatActivity {
         TextView textViewError = new TextView(this);
         textViewError.setLayoutParams(params);
         textViewError.setText(context.getResources().getString(R.string.error));
-        textViewError.setTextColor(Color.BLACK);
         textViewError.setTextSize(16);
 
         TextView textViewErrorMessage = new TextView(this);
         textViewErrorMessage.setLayoutParams(params);
         textViewErrorMessage.setText(context.getResources().getString(R.string.error_message,
                 String.valueOf(code), errorMessage));
-        textViewErrorMessage.setTextColor(Color.BLACK);
         textViewErrorMessage.setTextSize(16);
 
         linearLayout.addView(textViewError);
