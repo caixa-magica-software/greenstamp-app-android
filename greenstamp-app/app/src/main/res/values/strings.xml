@@ -13,7 +13,7 @@
     <string name="rating">Rating: %s</string>
     <string name="downloads">Downloads: %s</string>
     <string name="error">An error has occurred</string>
-    <string name="error_message">Code: %s \nMessage: %s</string>
+    <string name="error_message">Code: %s \nMessage:\n %s</string>
     <string name="results">Results</string>
     <string name="result">Name: %s \nParameters: %s \nResult: %s</string>
 </resources>

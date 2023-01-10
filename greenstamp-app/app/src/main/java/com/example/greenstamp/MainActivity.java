@@ -17,8 +17,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recyclerViewInstalledApps;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +24,10 @@ public class MainActivity extends AppCompatActivity {
 
         List<InstalledApp> installedApps = getInstalledApps();
 
-        recyclerViewInstalledApps = findViewById(R.id.recyclerViewInstalledApps);
+        RecyclerView recyclerViewInstalledApps = findViewById(R.id.recyclerViewInstalledApps);
         recyclerViewInstalledApps.setLayoutManager(new LinearLayoutManager(this));
 
-        InstalledAppsAdapter adapter = new InstalledAppsAdapter(this, installedApps);
+        InstalledAppsAdapter adapter = new InstalledAppsAdapter(installedApps);
         recyclerViewInstalledApps.setAdapter(adapter);
     }
 
@@ -43,10 +41,11 @@ public class MainActivity extends AppCompatActivity {
             String appName = packInfo.applicationInfo.loadLabel(getPackageManager()).toString();
             String packageName = packInfo.packageName;
             Drawable appIcon = packInfo.applicationInfo.loadIcon(getPackageManager());
+            long version = packInfo.getLongVersionCode();
 
             if(!((packInfo.applicationInfo.flags & (ApplicationInfo.FLAG_UPDATED_SYSTEM_APP |
                     ApplicationInfo.FLAG_SYSTEM)) > 0)) {
-                InstalledApp installedApp = new InstalledApp(appName, packageName, appIcon);
+                InstalledApp installedApp = new InstalledApp(appName, packageName, appIcon, version);
                 installedApps.add(installedApp);
             }
         }

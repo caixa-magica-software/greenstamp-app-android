@@ -1,6 +1,5 @@
 package com.example.greenstamp.Adapters;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +15,9 @@ import com.example.greenstamp.R;
 import java.util.List;
 
 public class InstalledAppsAdapter extends RecyclerView.Adapter<InstalledAppsViewHolder> {
-    Context context;
-    List<InstalledApp> installedAppList;
+    private final List<InstalledApp> installedAppList;
 
-    public InstalledAppsAdapter(Context context, List<InstalledApp> installedAppList) {
-        this.context = context;
+    public InstalledAppsAdapter(List<InstalledApp> installedAppList) {
         this.installedAppList = installedAppList;
     }
 
@@ -41,6 +38,7 @@ public class InstalledAppsAdapter extends RecyclerView.Adapter<InstalledAppsView
             Intent intent = new Intent(view.getContext(), AppDetailsActivity.class);
             intent.putExtra("NAME", installedAppList.get(position).appName);
             intent.putExtra("PACKAGE", installedAppList.get(position).packageName);
+            intent.putExtra("VERSION", installedAppList.get(position).version);
             view.getContext().startActivity(intent);
         });
     }
