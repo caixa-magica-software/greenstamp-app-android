@@ -165,7 +165,8 @@ public class AppDetailsActivity extends AppCompatActivity {
                 TextView textView = new TextView(this);
                 textView.setLayoutParams(params);
                 textView.setText(context.getResources().getString(R.string.result,
-                        results.get(i).name, results.get(i).parameters, results.get(i).result));
+                        results.get(i).name, results.get(i).parameters, results.get(i).result,
+                        results.get(i).unit));
                 textView.setTextSize(16);
                 linearLayout.addView(textView);
             }

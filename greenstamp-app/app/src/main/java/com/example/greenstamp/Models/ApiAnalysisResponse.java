@@ -17,6 +17,7 @@ public class ApiAnalysisResponse {
             public String name;
             public String parameters;
             public String result;
+            public String unit;
         }
     }
 }
