@@ -38,13 +38,14 @@ public class MainActivity extends AppCompatActivity {
         for (int i=0; i < packageList.size(); i++) {
             PackageInfo packInfo = packageList.get(i);
 
-            String appName = packInfo.applicationInfo.loadLabel(getPackageManager()).toString();
-            String packageName = packInfo.packageName;
-            Drawable appIcon = packInfo.applicationInfo.loadIcon(getPackageManager());
-            long version = packInfo.getLongVersionCode();
-
             if(!((packInfo.applicationInfo.flags & (ApplicationInfo.FLAG_UPDATED_SYSTEM_APP |
                     ApplicationInfo.FLAG_SYSTEM)) > 0)) {
+
+                String appName = packInfo.applicationInfo.loadLabel(getPackageManager()).toString();
+                String packageName = packInfo.packageName;
+                Drawable appIcon = packInfo.applicationInfo.loadIcon(getPackageManager());
+                long version = packInfo.getLongVersionCode();
+
                 InstalledApp installedApp = new InstalledApp(appName, packageName, appIcon, version);
                 installedApps.add(installedApp);
             }
@@ -52,4 +53,5 @@ public class MainActivity extends AppCompatActivity {
 
         return installedApps;
     }
+
 }
