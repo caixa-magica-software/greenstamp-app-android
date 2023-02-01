@@ -9,11 +9,15 @@
     <string name="store">Store: %s</string>
     <string name="version">Version: %s</string>
     <string name="keywords">Keywords: %s</string>
-    <string name="description">Description: %s</string>
+    <string name="description">Description\n%s</string>
     <string name="rating">Rating: %s</string>
     <string name="downloads">Downloads: %s</string>
-    <string name="error">An error has occurred</string>
-    <string name="error_message">Code: %s \nMessage:\n %s</string>
+    <string name="error">An error has occurred getting app details</string>
+    <string name="error_results">An error has occurred getting results</string>
+    <string name="error_message">Message: %s</string>
     <string name="results">Results</string>
-    <string name="result">Name: %s \nParameters: %s \nResult: %s \nUnit: %s</string>
+    <string name="name">Name</string>
+    <string name="parameters">Params</string>
+    <string name="result">Result</string>
+    <string name="unit">Unit</string>
 </resources>
