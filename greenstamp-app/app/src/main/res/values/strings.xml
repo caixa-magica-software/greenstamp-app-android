@@ -20,4 +20,6 @@
     <string name="parameters">Params</string>
     <string name="result">Result</string>
     <string name="unit">Unit</string>
+    <string name="category">Category: %s</string>
+    <string name="position">Position: %s</string>
 </resources>

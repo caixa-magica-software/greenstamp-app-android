@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.StyleSpan;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -52,6 +53,8 @@ public class AppDetailsActivity extends AppCompatActivity {
     private TextView textViewDescription;
     private TextView textViewRating;
     private TextView textViewDownloads;
+    private TextView textViewCategories;
+    private TextView textViewCategoryPosition;
     private TableLayout tableLayout;
 
     private String appName;
@@ -76,6 +79,8 @@ public class AppDetailsActivity extends AppCompatActivity {
         textViewDescription = findViewById(R.id.textViewDescription);
         textViewRating = findViewById(R.id.textViewRating);
         textViewDownloads = findViewById(R.id.textViewDownloads);
+        textViewCategories = findViewById(R.id.textViewCategory);
+        textViewCategoryPosition = findViewById(R.id.textViewCategoryPosition);
         tableLayout = findViewById(R.id.tableLayoutResults);
 
         Bundle extras = getIntent().getExtras();
@@ -153,13 +158,24 @@ public class AppDetailsActivity extends AppCompatActivity {
     }
 
     private void displayAppAnalysis(ApiAnalysisResponse apiAnalysisResponse) {
-        createTable();
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0,12,0,0);
-
         if(apiAnalysisResponse.data != null) {
+            if(apiAnalysisResponse.data.categories.size() > 0) {
+                StringBuilder category = new StringBuilder();
+                for (int i = 0; i < apiAnalysisResponse.data.categories.size(); i++) {
+                    category.append(apiAnalysisResponse.data.categories.get(i));
+                }
+
+                textViewCategories.setVisibility(View.VISIBLE);
+                textViewCategories.setText(formatString(context.getResources().getString(R.string.category,
+                        category), 10));
+
+                textViewCategoryPosition.setVisibility(View.VISIBLE);
+                textViewCategoryPosition.setText(formatString(context.getResources().getString(R.string.position,
+                        String.valueOf(1)), 8)); //Change hard coded position to received
+            }
+
+            createTable();
+
             List<ApiAnalysisResponse.Data.Result> results = apiAnalysisResponse.data.results;
 
             for (int i = 0; i < results.size(); i++) {

@@ -1,5 +1,6 @@
 package com.example.greenstamp.Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ApiAnalysisResponse {
@@ -7,10 +8,11 @@ public class ApiAnalysisResponse {
     public String error;
 
     public static class Data {
-        public String name;
-        public String url;
-        public String entity;
+        public String appName;
+        public String packageName;
+        public String version;
         public String timeStamp;
+        public ArrayList<String> categories;
         public List<Result> results;
 
         public static class Result {
