@@ -175,7 +175,7 @@ public class AppDetailsActivity extends AppCompatActivity {
 
                 textViewCategoryPosition.setVisibility(View.VISIBLE);
                 textViewCategoryPosition.setText(formatString(context.getResources().getString(R.string.position,
-                        String.valueOf(1)), 8)); //Change hard coded position to received
+                        String.valueOf(apiAnalysisResponse.data.ranking)), 8)); //Change hard coded position to received
             }
 
             createTable();

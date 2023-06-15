@@ -12,6 +12,7 @@ public class ApiAnalysisResponse {
         public String packageName;
         public String version;
         public String timeStamp;
+        public String ranking;
         public ArrayList<String> categories;
         public List<Result> results;
 
