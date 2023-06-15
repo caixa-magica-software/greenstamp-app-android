@@ -162,7 +162,11 @@ public class AppDetailsActivity extends AppCompatActivity {
             if(apiAnalysisResponse.data.categories.size() > 0) {
                 StringBuilder category = new StringBuilder();
                 for (int i = 0; i < apiAnalysisResponse.data.categories.size(); i++) {
-                    category.append(apiAnalysisResponse.data.categories.get(i));
+                    if (i == 0) {
+                        category.append(apiAnalysisResponse.data.categories.get(i));
+                    } else{
+                        category.append(", "+apiAnalysisResponse.data.categories.get(i));
+                    }
                 }
 
                 textViewCategories.setVisibility(View.VISIBLE);
@@ -171,7 +175,7 @@ public class AppDetailsActivity extends AppCompatActivity {
 
                 textViewCategoryPosition.setVisibility(View.VISIBLE);
                 textViewCategoryPosition.setText(formatString(context.getResources().getString(R.string.position,
-                        String.valueOf(1)), 8)); //Change hard coded position to received
+                        String.valueOf(apiAnalysisResponse.data.ranking)), 8)); //Change hard coded position to received
             }
 
             createTable();

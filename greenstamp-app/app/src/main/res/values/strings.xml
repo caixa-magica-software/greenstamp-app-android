@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Green Stamp</string>
+    <string name="app_name">Greenstamp</string>
     <string name="installed_apps">Apps installed on your device</string>
     <string name="installed_app_icon">Installed App Icon</string>
     <string name="uname">Uname: %s</string>
