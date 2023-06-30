@@ -26,6 +26,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -55,6 +57,7 @@ public class AppDetailsActivity extends AppCompatActivity {
     private TextView textViewDownloads;
     private TextView textViewCategories;
     private TextView textViewCategoryPosition;
+    private TextView textViewMsg;
     private TableLayout tableLayout;
 
     private String appName;
@@ -80,6 +83,8 @@ public class AppDetailsActivity extends AppCompatActivity {
         textViewRating = findViewById(R.id.textViewRating);
         textViewDownloads = findViewById(R.id.textViewDownloads);
         textViewCategories = findViewById(R.id.textViewCategory);
+        textViewMsg = findViewById(R.id.textViewMsg);
+
         textViewCategoryPosition = findViewById(R.id.textViewCategoryPosition);
         tableLayout = findViewById(R.id.tableLayoutResults);
 
@@ -235,22 +240,26 @@ public class AppDetailsActivity extends AppCompatActivity {
     }
 
     private void displayErrorAnalysis(Throwable t) {
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0,12,0,0);
 
-        TextView textViewError = new TextView(this);
-        textViewError.setLayoutParams(params);
-        textViewError.setText(context.getResources().getString(R.string.error_results));
-        textViewError.setTextSize(16);
+        String msg = t.getMessage();
+        // Using regular expressions
+        Pattern pattern = Pattern.compile("\\d+"); // Matches one or more digits
+        Matcher matcher = pattern.matcher(msg);
+        int number=0;
 
-        TextView textViewErrorMessage = new TextView(this);
-        textViewErrorMessage.setLayoutParams(params);
-        textViewErrorMessage.setText(context.getResources().getString(R.string.error_message, t.getMessage()));
-        textViewErrorMessage.setTextSize(16);
+        if (matcher.find()) {
+            String numberString = matcher.group(); // Retrieves the matched number as a string
+            number = Integer.parseInt(numberString); // Converts the string to an integer
+        }
 
-        linearLayout.addView(textViewError);
-        linearLayout.addView(textViewErrorMessage);
+        if(number == 404 ){
+           textViewMsg.setText(getString(R.string.error_message_no_exist) + "\n\n [ " + msg + " ]");
+        } else if (number == 503) {
+            textViewMsg.setText(getString(R.string.error_message_try_again) + "\n\n [ " + msg + " ]");
+        } else {
+            textViewMsg.setText(getString(R.string.error_message_default) + "\n\n [ " + msg + " ]");
+        }
+        textViewMsg.setVisibility(View.VISIBLE);
     }
 
     private SpannableString formatString(String string, int endSpan) {
