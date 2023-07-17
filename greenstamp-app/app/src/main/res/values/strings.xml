@@ -18,7 +18,7 @@
     <string name="error_message">Message: %s</string>
     <string name="error_message_no_exist">This version of this application does not exist in the Appstore.</string>
     <string name="error_message_try_again">Please try again later. This APP will be tested now and results will be available soon.</string>
-    <string name="error_message_default">Please try again later.</string>
+    <string name="error_message_default">Please try again later. Results will be available soon.</string>
     <string name="results">Greenstamp results</string>
     <string name="textViewDetails">APP Details</string>
     <string name="name">Name</string>

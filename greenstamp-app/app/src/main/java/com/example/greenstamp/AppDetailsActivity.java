@@ -254,7 +254,7 @@ public class AppDetailsActivity extends AppCompatActivity {
 
         if(number == 404 ){
            textViewMsg.setText(getString(R.string.error_message_no_exist) + "\n\n [ " + msg + " ]");
-        } else if (number == 503) {
+        } else if (number == 202) {
             textViewMsg.setText(getString(R.string.error_message_try_again) + "\n\n [ " + msg + " ]");
         } else {
             textViewMsg.setText(getString(R.string.error_message_default) + "\n\n [ " + msg + " ]");
